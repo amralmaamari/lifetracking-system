@@ -1,4 +1,4 @@
-// File: D:\Github\BlogApp\client\src\app\page.tsx
+// File: D:\Github For Work\lifetracking-system\client\src\app\page.tsx
 import * as entry from '../../../src/app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

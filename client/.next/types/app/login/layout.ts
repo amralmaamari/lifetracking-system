@@ -1,4 +1,4 @@
-// File: D:\Github\BlogApp\client\src\app\login\layout.tsx
+// File: D:\Github For Work\lifetracking-system\client\src\app\login\layout.tsx
 import * as entry from '../../../../src/app/login/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

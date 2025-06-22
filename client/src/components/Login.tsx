@@ -41,30 +41,30 @@ export default function Login() {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // IMPORTANT for cookies
-        body: JSON.stringify({ Email: data.email, Password: data.password }),
+        credentials: "include", // For cookies/session
+        body: JSON.stringify({
+          Email: data.email,
+          Password: data.password,
+        }),
       });
-  
-      if (res.ok) {
-        const response = await res.json();
-        
-        if (response.success && response.data) {
-          login(response.data); // set user in context
-          toast.success(`Welcome ${response.data.fullName}!`, { id: loadingToast });
-          router.push("/");
-        } else {
-          toast.error("Unexpected response structure", { id: loadingToast });
-        }
-      } else if (res.status === 401) {
+    
+      const response = await res.json();
+    
+      if (res.ok && response.success && response.data) {
+        login(response.data); // context update
+        toast.success(`Welcome ${response.data.fullName}!`, { id: loadingToast });
+        router.push("/");
+      } else if (res.status === 401 || !response.success) {
         toast.error("Invalid email or password", { id: loadingToast });
       } else {
-        const err = await res.json();
-        toast.error(`Login failed: ${err.message}`, { id: loadingToast });
+        toast.error(`Login failed: ${response.message || "Unexpected error"}`, { id: loadingToast });
       }
+    
     } catch (err) {
       console.error("❌ Login error", err);
-      toast.error("Login error, check network or server", { id: loadingToast });
+      toast.error("Login error, check your network or server.", { id: loadingToast });
     }
+    
   };
   
 
